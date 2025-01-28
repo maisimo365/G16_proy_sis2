@@ -1,4 +1,4 @@
-# Sistema de Información para el control de isncripciones de un Colegio
+# Sistema de Información para el control de inscripciones de un Colegio
 
 ## Número de grupo 16
 

@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Secretaria;
-import dba.Mysql;
+import queries.Mysql;
 import java.sql.Array.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

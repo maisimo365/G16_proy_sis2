@@ -2,20 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package dba;
+package queries;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 /**
  *
- * @author JAIR
+ * @author miguel
  */
 public class Mysql {
     public static Connection getConnection(){
          Connection cn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            cn=DriverManager.getConnection("jdbc:mysql://localhost:3306/tarea_metodos", "root", "");
+            cn=DriverManager.getConnection("jdbc:mysql://localhost:3306/sisinfobd2", "root", "");
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
         }catch(Exception e1){

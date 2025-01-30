@@ -5,6 +5,7 @@
 package Secretaria;
 import javax.swing.JOptionPane;
 import java.awt.Color;
+import queries.Validaciones;
 /**
  *
  * @author migue
@@ -14,8 +15,19 @@ public class VentanaRegEst extends javax.swing.JFrame {
     /**
      * Creates new form VentanaRegistro
      */
+    private final Validaciones validaciones;
     public VentanaRegEst() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        validaciones = new Validaciones();
+
+        // Validaciones de entrada
+        validaciones.permitirSoloLetras(jTextField1);
+        validaciones.permitirSoloLetras(jTextField4);
+        validaciones.permitirSoloNumeros(jTextField2);
+        validaciones.permitirSoloNumeros(jTextField5);
+        validaciones.permitirSoloNumeros(jTextField6);
+        validaciones.permitirSoloNumeros(jTextField7);
         
     }
 
@@ -30,10 +42,7 @@ public class VentanaRegEst extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         exitTxt = new javax.swing.JLabel();
-        Paralelo = new javax.swing.JComboBox<>();
-        Curso = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -43,8 +52,18 @@ public class VentanaRegEst extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
+        jTextField6 = new javax.swing.JTextField();
+        jTextField7 = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,12 +71,8 @@ public class VentanaRegEst extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Gadugi", 0, 12)); // NOI18N
-        jLabel1.setText("Selecionar Curso y paralelo");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, -1, -1));
-
-        jLabel2.setFont(new java.awt.Font("Gadugi", 0, 12)); // NOI18N
-        jLabel2.setText("Carnet de Identidad(Estudiante)");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, -1, -1));
+        jLabel1.setText("Nuevo ingreso o estudiante antiguo");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
 
         exitTxt.setFont(new java.awt.Font("Gadugi", 0, 14)); // NOI18N
         exitTxt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -77,22 +92,10 @@ public class VentanaRegEst extends javax.swing.JFrame {
         });
         jPanel1.add(exitTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 30));
 
-        Paralelo.setFont(new java.awt.Font("Gadugi", 0, 12)); // NOI18N
-        Paralelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C" }));
-        jPanel1.add(Paralelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, -1, -1));
-
-        Curso.setFont(new java.awt.Font("Gadugi", 0, 12)); // NOI18N
-        Curso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6" }));
-        Curso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CursoActionPerformed(evt);
-            }
-        });
-        jPanel1.add(Curso, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, -1, -1));
-
-        jLabel3.setFont(new java.awt.Font("Gadugi", 1, 18)); // NOI18N
-        jLabel3.setText("REGISTRO DE ESTUDIANTES");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, -1, -1));
+        jLabel3.setFont(new java.awt.Font("Gadugi", 1, 16)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel3.setText("Datos del estudiante");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, -1, -1));
 
         jTextField1.setFont(new java.awt.Font("Gadugi", 0, 12)); // NOI18N
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -100,19 +103,19 @@ public class VentanaRegEst extends javax.swing.JFrame {
                 jTextField1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 240, -1));
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, 240, -1));
 
         jLabel4.setFont(new java.awt.Font("Gadugi", 0, 12)); // NOI18N
         jLabel4.setText("Nombre completo del estudiante");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Gadugi", 0, 12)); // NOI18N
         jLabel5.setText("Carnet de Identidad(Estudiante)");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Gadugi", 0, 12)); // NOI18N
         jLabel7.setText("Domicilio del estudiante");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, -1, -1));
 
         jButton1.setFont(new java.awt.Font("Gadugi", 0, 12)); // NOI18N
         jButton1.setText("CANCELAR");
@@ -121,7 +124,7 @@ public class VentanaRegEst extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 350, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, -1, -1));
 
         jButton2.setFont(new java.awt.Font("Gadugi", 0, 12)); // NOI18N
         jButton2.setText("REGISTRAR");
@@ -130,16 +133,13 @@ public class VentanaRegEst extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 370, -1, -1));
 
         jTextField2.setFont(new java.awt.Font("Gadugi", 0, 12)); // NOI18N
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 240, -1));
+        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 240, -1));
 
         jTextField3.setFont(new java.awt.Font("Gadugi", 0, 12)); // NOI18N
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 240, -1));
-
-        jTextField4.setFont(new java.awt.Font("Gadugi", 0, 12)); // NOI18N
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, 240, -1));
+        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, 240, -1));
 
         jPanel2.setBackground(new java.awt.Color(214, 227, 235));
 
@@ -155,6 +155,56 @@ public class VentanaRegEst extends javax.swing.JFrame {
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 650, 50));
+
+        jLabel6.setFont(new java.awt.Font("Gadugi", 1, 18)); // NOI18N
+        jLabel6.setText("REGISTRO DE ESTUDIANTES");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, -1, 20));
+
+        jLabel8.setFont(new java.awt.Font("Gadugi", 1, 16)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel8.setText("Datos del tutor");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, -1, -1));
+
+        jTextField4.setFont(new java.awt.Font("Gadugi", 0, 12)); // NOI18N
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 250, 240, -1));
+
+        jLabel9.setFont(new java.awt.Font("Gadugi", 0, 12)); // NOI18N
+        jLabel9.setText("Nombre completo del tutor");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, -1, -1));
+
+        jLabel10.setFont(new java.awt.Font("Gadugi", 0, 12)); // NOI18N
+        jLabel10.setText("Carnet de Identidad(Tutor)");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, -1, -1));
+
+        jLabel11.setFont(new java.awt.Font("Gadugi", 0, 12)); // NOI18N
+        jLabel11.setText("Telefono");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, -1, -1));
+
+        jTextField5.setFont(new java.awt.Font("Gadugi", 0, 12)); // NOI18N
+        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, 240, -1));
+
+        jTextField6.setFont(new java.awt.Font("Gadugi", 0, 12)); // NOI18N
+        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 310, 240, -1));
+
+        jTextField7.setFont(new java.awt.Font("Gadugi", 0, 12)); // NOI18N
+        jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 340, 240, -1));
+
+        jLabel12.setFont(new java.awt.Font("Gadugi", 0, 12)); // NOI18N
+        jLabel12.setText("Celular");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 340, -1, -1));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NUEVO", "ANTIGUO" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -177,7 +227,9 @@ public class VentanaRegEst extends javax.swing.JFrame {
     private void exitTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitTxtMouseClicked
         int respuesta = JOptionPane.showConfirmDialog(null, "¿Estás seguro de salir del sistema?", "Colegio X", JOptionPane.YES_NO_OPTION);
         if (respuesta == JOptionPane.YES_OPTION) {
-            System.exit(0);
+            VentanaPrincipalSec newframe = new VentanaPrincipalSec();
+            newframe.setVisible(true);
+            this.dispose();
         }
     }//GEN-LAST:event_exitTxtMouseClicked
 
@@ -191,21 +243,27 @@ public class VentanaRegEst extends javax.swing.JFrame {
         exitTxt.setForeground(Color.black);
     }//GEN-LAST:event_exitTxtMouseExited
 
-    private void CursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CursoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CursoActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        queries.Consultas consulta = new queries.Consultas();
+        consulta.insertarDatos(this); 
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -244,22 +302,29 @@ public class VentanaRegEst extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> Curso;
-    private javax.swing.JComboBox<String> Paralelo;
     private javax.swing.JLabel exitTxt;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    public javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    public javax.swing.JTextField jTextField1;
+    public javax.swing.JTextField jTextField2;
+    public javax.swing.JTextField jTextField3;
+    public javax.swing.JTextField jTextField4;
+    public javax.swing.JTextField jTextField5;
+    public javax.swing.JTextField jTextField6;
+    public javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
 }

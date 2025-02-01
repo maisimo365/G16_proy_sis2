@@ -13,7 +13,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConexionDB {
-    private static final String URL = "jdbc:mysql://localhost:3306/sisinfo2bd"; // Cambiar "sisinfo2bd" al nombre de tu base de datos
+    private static final String URL = "jdbc:mysql://localhost:3306/bdactualizadasis2oficial"; // Cambiar "sisinfo2bd" al nombre de tu base de datos
     private static final String USUARIO = "root"; // Usuario de MariaDB
     private static final String CONTRASENA = ""; // Contraseña de MariaDB
 

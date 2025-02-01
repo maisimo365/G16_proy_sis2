@@ -28,6 +28,7 @@ public class Login extends javax.swing.JFrame {
         loginBtn = new javax.swing.JPanel();
         loginBtnTxt = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        exitTxt = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -127,6 +128,24 @@ public class Login extends javax.swing.JFrame {
 
         bg.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 0, 320, 500));
 
+        exitTxt.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 36)); // NOI18N
+        exitTxt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        exitTxt.setText("X");
+        exitTxt.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        exitTxt.setPreferredSize(new java.awt.Dimension(40, 40));
+        exitTxt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitTxtMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                exitTxtMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                exitTxtMouseExited(evt);
+            }
+        });
+        bg.add(exitTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -198,6 +217,21 @@ public class Login extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_loginBtnTxtMouseClicked
 
+    private void exitTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitTxtMouseClicked
+
+        this.dispose();
+    }//GEN-LAST:event_exitTxtMouseClicked
+
+    private void exitTxtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitTxtMouseEntered
+        exitTxt.setBackground(Color.blue);
+        exitTxt.setForeground(Color.white);
+    }//GEN-LAST:event_exitTxtMouseEntered
+
+    private void exitTxtMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitTxtMouseExited
+        exitTxt.setBackground(Color.red);
+        exitTxt.setForeground(Color.black);
+    }//GEN-LAST:event_exitTxtMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -236,6 +270,7 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
+    private javax.swing.JLabel exitTxt;
     private javax.swing.JLabel favicon;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;

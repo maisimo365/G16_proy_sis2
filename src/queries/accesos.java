@@ -15,7 +15,7 @@ import java.sql.SQLException;
  */
 public class accesos {
     public boolean registrarUsuario(String rol, String nombreCompleto, String carnet, String domicilio, String telefono, String celular, String usuario, String contrasena) {
-        String sql = "INSERT INTO administrativos (ROL, NOMBRECOMPLETO, CARNET, DOMIICILIO, TELEFONO, CELULAR, USUARIO, CONTRASEÑA) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO administrativos (ROL, NOMBRECOMPLETO, CARNET, DOMICILIO, TELEFONO, CELULAR, USUARIO, CONTRASEÑA) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = Mysql.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, rol);

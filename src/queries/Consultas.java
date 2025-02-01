@@ -24,55 +24,93 @@ public class Consultas {
     
     
     public void insertarDatos(VentanaRegEst ventana) {
-        // Validación de campos vacíos
-        if (ventana.jTextField1.getText().isEmpty() || ventana.jTextField2.getText().isEmpty() ||
-            ventana.jTextField3.getText().isEmpty() || ventana.jComboBox1.getSelectedItem() == null ||
-            ventana.jTextField4.getText().isEmpty() || ventana.jTextField5.getText().isEmpty() ||
-            ventana.jTextField6.getText().isEmpty() || ventana.jTextField7.getText().isEmpty()) {
+    // Reiniciar la visibilidad de los labels de error
+    ventana.jLabel13.setVisible(false);
+    ventana.jLabel14.setVisible(false);
+    ventana.jLabel15.setVisible(false);
+    ventana.jLabel16.setVisible(false);
+    ventana.jLabel17.setVisible(false);
+    ventana.jLabel18.setVisible(false);
+    ventana.jLabel2.setVisible(false);
 
-            JOptionPane.showMessageDialog(ventana, "Todos los campos deben estar llenos.", "Error", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
+    // Variables de control para validar los campos vacíos
+    boolean camposValidos = true;
 
-        // Mostrar mensaje de confirmación
-        int confirmacion = JOptionPane.showConfirmDialog(
-                ventana,
-                "¿Estás seguro de registrar estos datos?",
-                "Confirmación de Registro",
-                JOptionPane.YES_NO_OPTION
-        );
-
-        if (confirmacion == JOptionPane.YES_OPTION) {
-            String sqlInsertRegistrados = "INSERT INTO registrados (NOMBREESTUDIANTE, CARNETESTUDIANTE, DOMICILIOESTUDIANTE, TIPOALUMNO) VALUES (?, ?, ?, ?)";
-            String sqlInsertTutores = "INSERT INTO tutores (NOMBRETUTOR, CARNETTUTOR, TELEFONOTUTOR, CELULARTUTOR) VALUES (?, ?, ?, ?)";
-
-            try (Connection conn = Mysql.getConnection();
-                 PreparedStatement pstmtRegistrados = conn.prepareStatement(sqlInsertRegistrados);
-                 PreparedStatement pstmtTutores = conn.prepareStatement(sqlInsertTutores)) {
-
-                // Parámetros para la tabla registrados
-                pstmtRegistrados.setString(1, ventana.jTextField1.getText());
-                pstmtRegistrados.setString(2, ventana.jTextField2.getText());
-                pstmtRegistrados.setString(3, ventana.jTextField3.getText());
-                pstmtRegistrados.setString(4, ventana.jComboBox1.getSelectedItem().toString());
-                pstmtRegistrados.executeUpdate();
-
-                // Parámetros para la tabla tutores
-                pstmtTutores.setString(1, ventana.jTextField4.getText());
-                pstmtTutores.setString(2, ventana.jTextField5.getText());
-                pstmtTutores.setString(3, ventana.jTextField6.getText());
-                pstmtTutores.setString(4, ventana.jTextField7.getText());
-                pstmtTutores.executeUpdate();
-
-                JOptionPane.showMessageDialog(ventana, "Datos insertados correctamente.");
-
-            } catch (SQLException e) {
-                JOptionPane.showMessageDialog(ventana, "Error al insertar datos: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } else {
-            JOptionPane.showMessageDialog(ventana, "Registro cancelado.");
-        }
+    if (ventana.jTextField1.getText().isEmpty()) {
+        ventana.jLabel13.setVisible(true);
+        camposValidos = false;
     }
+    if (ventana.jTextField2.getText().isEmpty()) {
+        ventana.jLabel14.setVisible(true);
+        camposValidos = false;
+    }
+    if (ventana.jTextField3.getText().isEmpty()) {
+        ventana.jLabel15.setVisible(true);
+        camposValidos = false;
+    }
+    if (ventana.jTextField4.getText().isEmpty()) {
+        ventana.jLabel16.setVisible(true);
+        camposValidos = false;
+    }
+    if (ventana.jTextField5.getText().isEmpty()) {
+        ventana.jLabel17.setVisible(true);
+        camposValidos = false;
+    }
+    if (ventana.jTextField6.getText().isEmpty()) {
+        ventana.jLabel18.setVisible(true);
+        camposValidos = false;
+    }
+    if (ventana.jTextField7.getText().isEmpty()) {
+        ventana.jLabel2.setVisible(true);
+        camposValidos = false;
+    }
+
+    // Si hay campos vacíos, mostrar mensaje y salir
+    if (!camposValidos) {
+        JOptionPane.showMessageDialog(ventana, "Todos los campos deben estar llenos.", "Error", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    // Mostrar mensaje de confirmación
+    int confirmacion = JOptionPane.showConfirmDialog(
+            ventana,
+            "¿Estás seguro de registrar estos datos?",
+            "Confirmación de Registro",
+            JOptionPane.YES_NO_OPTION
+    );
+
+    if (confirmacion == JOptionPane.YES_OPTION) {
+        String sqlInsertRegistrados = "INSERT INTO registrados (NOMBREESTUDIANTE, CARNETESTUDIANTE, DOMICILIOESTUDIANTE, TIPOALUMNO) VALUES (?, ?, ?, ?)";
+        String sqlInsertTutores = "INSERT INTO tutores (NOMBRETUTOR, CARNETTUTOR, TELEFONOTUTOR, CELULARTUTOR) VALUES (?, ?, ?, ?)";
+
+        try (Connection conn = Mysql.getConnection();
+             PreparedStatement pstmtRegistrados = conn.prepareStatement(sqlInsertRegistrados);
+             PreparedStatement pstmtTutores = conn.prepareStatement(sqlInsertTutores)) {
+
+            // Parámetros para la tabla registrados
+            pstmtRegistrados.setString(1, ventana.jTextField1.getText());
+            pstmtRegistrados.setString(2, ventana.jTextField2.getText());
+            pstmtRegistrados.setString(3, ventana.jTextField3.getText());
+            pstmtRegistrados.setString(4, ventana.jComboBox1.getSelectedItem().toString());
+            pstmtRegistrados.executeUpdate();
+
+            // Parámetros para la tabla tutores
+            pstmtTutores.setString(1, ventana.jTextField4.getText());
+            pstmtTutores.setString(2, ventana.jTextField5.getText());
+            pstmtTutores.setString(3, ventana.jTextField6.getText());
+            pstmtTutores.setString(4, ventana.jTextField7.getText());
+            pstmtTutores.executeUpdate();
+
+            JOptionPane.showMessageDialog(ventana, "Datos insertados correctamente.");
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(ventana, "Error al insertar datos: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    } else {
+        JOptionPane.showMessageDialog(ventana, "Registro cancelado.");
+    }
+}
+
     
     public void llenarTablaHorarios(VentanaRegistroHorarios ventanaHorarios) {
         // Definir las columnas de la tabla

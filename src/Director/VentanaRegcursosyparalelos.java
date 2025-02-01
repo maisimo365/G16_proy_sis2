@@ -25,7 +25,6 @@ public class VentanaRegcursosyparalelos extends javax.swing.JFrame {
      */
     public VentanaRegcursosyparalelos() {
         initComponents();
-        DeshabilitarCampos();
         HabilitarCampos();
         LlenarTabla();
     }
@@ -342,7 +341,7 @@ void LlenarTabla() {
             jTextField2.setText(jTable1.getValueAt(fila, 2).toString()); // Carga el valor de la columna 2 en jTextField2
 
             // Deshabilitar los campos de texto después de cargar los valores
-            DeshabilitarCampos();
+            HabilitarCampos();
         }
     }//GEN-LAST:event_jTable1MouseClicked
 

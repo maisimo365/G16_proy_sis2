@@ -21,7 +21,6 @@ public class VentanaRegSecretaria extends javax.swing.JFrame {
     public VentanaRegSecretaria() {
         initComponents();
         HabilitarCampos();
-        DeshabilitarCampos();
         LlenarTabla();
     }
     
@@ -364,7 +363,7 @@ public class VentanaRegSecretaria extends javax.swing.JFrame {
             jTextField8.setText(jTable1.getValueAt(fila, 8).toString());
             // Llama al método DeshabilitarCampos() para hacer que los campos de texto sean no editables
 
-            DeshabilitarCampos();
+            HabilitarCampos();
         }
         
     }//GEN-LAST:event_jTable1MouseClicked
